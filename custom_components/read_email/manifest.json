@@ -1,6 +1,7 @@
 {
   "domain": "read_email",
   "name": "read_email",
+  "version": "0.0.1",
   "documentation": "",
   "dependencies": [],
   "codeowners": ["@kdosiodjinud"]
