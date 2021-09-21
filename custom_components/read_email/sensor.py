@@ -4,6 +4,7 @@ import datetime
 import email
 import imaplib
 import logging
+import base64
 
 import voluptuous as vol
 
@@ -227,15 +228,15 @@ class EmailContentSensor(SensorEntity):
                 message_untyped_text = part.get_payload()
 
         if message_text is not None:
-            return base64.b64decode(message_text).decode("utf-8")
+            return message_text
 
         if message_html is not None:
-            return base64.b64decode(message_text).decode("utf-8")
+            return message_text
 
         if message_untyped_text is not None:
-            return base64.b64decode(message_untyped_text).decode("utf-8")
+            return message_untyped_text
 
-        return base64.b64decode(mail_message.get_payload()).decode("utf-8")
+        return mail_message.get_payload()
 
     def update(self):
         """Read emails and publish state change."""
@@ -257,5 +258,5 @@ class EmailContentSensor(SensorEntity):
                 ATTR_FROM: EmailContentSensor.get_msg_sender(email_message),
                 ATTR_SUBJECT: EmailContentSensor.get_msg_subject(email_message),
                 ATTR_DATE: email_message["Date"],
-                ATTR_BODY: EmailContentSensor.get_msg_text(email_message),
+                ATTR_BODY: base64.b64decode(EmailContentSensor.get_msg_text(email_message)).decode("utf-8"),
             }
