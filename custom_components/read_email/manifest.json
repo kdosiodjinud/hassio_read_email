@@ -1,0 +1,7 @@
+{
+  "domain": "read_email",
+  "name": "read_email",
+  "documentation": "",
+  "dependencies": [],
+  "codeowners": ["@kdosiodjinud"]
+}

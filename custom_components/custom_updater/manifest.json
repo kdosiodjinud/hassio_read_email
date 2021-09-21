@@ -1,8 +1,0 @@
-{
-  "domain": "custom_updater",
-  "name": "custom_updater",
-  "documentation": "",
-  "dependencies": [],
-  "codeowners": ["@ludeeus"],
-  "requirements": ["pyupdate==1.4.0"]
-}
