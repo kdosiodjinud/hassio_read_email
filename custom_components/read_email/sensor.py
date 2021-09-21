@@ -230,7 +230,7 @@ class EmailContentSensor(SensorEntity):
             return message_text
 
         if message_html is not None:
-            return base64.b64decode(message_text).decode(‘utf-8’)
+            return base64.b64decode(message_text).decode("utf-8")
 
         if message_untyped_text is not None:
             return message_untyped_text
@@ -239,7 +239,7 @@ class EmailContentSensor(SensorEntity):
 
     def update(self):
         """Read emails and publish state change."""
-        email_message = "config/custom_components/imap_email_content/test1" #self._email_reader.read_next()
+        email_message = self._email_reader.read_next()
 
         if email_message is None:
             self._message = None
