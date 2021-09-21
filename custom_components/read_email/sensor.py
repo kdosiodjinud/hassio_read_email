@@ -227,15 +227,15 @@ class EmailContentSensor(SensorEntity):
                 message_untyped_text = part.get_payload()
 
         if message_text is not None:
-            return message_text
+            return "test1" #message_text
 
         if message_html is not None:
-            return base64.b64decode(message_text).decode("utf-8")
+            return "test2" #base64.b64decode(message_text).decode("utf-8")
 
         if message_untyped_text is not None:
-            return message_untyped_text
+            return "test3" #message_untyped_text
 
-        return mail_message.get_payload()
+        return "test4" #mail_message.get_payload()
 
     def update(self):
         """Read emails and publish state change."""
